@@ -1,3 +1,5 @@
+## Warning the original ubuntu version have some bug with openssl, so I have to change the ubuntu version to 20.10
+
 ## Provisioning the Kubernetes cluster
 ### Clone the repo
 ```
