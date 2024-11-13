@@ -98,6 +98,6 @@ docker run -d \
    docker push <主节点IP>:5000/my-image:latest
    ```
 
-### 3. 在虚拟机子节点上配置 Containerd | cri-o
+### 3. 在虚拟机子节点上配置 ~~Containerd | cri-o
 
 在 bootstrap.sh 里已经有配置
