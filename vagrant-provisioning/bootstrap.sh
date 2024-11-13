@@ -48,6 +48,23 @@ install -m 755 runc.amd64 /usr/local/sbin/runc
 wget -q  https://github.com/containernetworking/plugins/releases/download/v1.6.0/cni-plugins-linux-amd64-v1.6.0.tgz
 mkdir -p /opt/cni/bin
 tar Cxzvf /opt/cni/bin cni-plugins-linux-amd64-v1.6.0.tgz
+mkdir -p /etc/containerd/
+cat > /etc/containerd/config.toml <<EOF
+version = 3
+
+[plugins."io.containerd.cri.v1.images".registry]
+   config_path = "/etc/containerd/certs.d"
+EOF
+
+mkdir -p /etc/containerd/certs.d/192.168.1.6:5000/
+cat > /etc/containerd/certs.d/192.168.1.6:5000/hosts.toml <<EOF
+server = "https://192.168.1.6:5000"
+
+[host."http://192.168.1.6:5000"]
+  capabilities = ["pull", "resolve"]
+  skip_verify = true
+EOF
+systemctl restart containerd
 
 echo "[TASK 6] Set up kubernetes repo"
 apt-get update -qq

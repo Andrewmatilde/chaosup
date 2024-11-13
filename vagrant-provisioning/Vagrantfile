@@ -21,7 +21,6 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
   config.vm.box_version       = VAGRANT_BOX_VERSION
 
   config.vm.provision "shell", path: "bootstrap.sh"
-
   # Kubernetes Master Server
   config.vm.define "kmaster" do |node|
 
