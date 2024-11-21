@@ -1,0 +1,21 @@
+{
+	"name": "Debian",
+    "build": {
+        // Path is relative to the devcontainer.json file.
+        "dockerfile": "Dockerfile"
+    },
+	"features": {
+		"ghcr.io/devcontainers/features/git:1": {
+			"ppa": true,
+			"version": "os-provided"
+		},
+		"ghcr.io/devcontainers/features/go:1": {
+			"version": "1.23.3"
+		},
+		"ghcr.io/jungaretti/features/make:1": {
+			"version": "latest"
+		}
+	},
+	"remoteUser": "root",
+	"privileged": true
+}
