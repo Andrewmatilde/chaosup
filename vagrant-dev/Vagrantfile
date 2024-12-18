@@ -14,7 +14,10 @@ Vagrant.configure("2") do |config|
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "crystax/ubuntu2404"
   config.vm.box_version = "1.0.0"
-
+  config.ssh.forward_agent = true
+  config.vm.provision "shell", inline: <<-SHELL
+    cat /home/shenan/.ssh/authorized_keys >> /home/vagrant/.ssh/authorized_keys
+  SHELL
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
