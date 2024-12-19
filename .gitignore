@@ -1,1 +1,3 @@
 **/.vagrant
+vagrant-dev/ssh/root_key
+vagrant-dev/ssh/root_key.pub
