@@ -1,0 +1,15 @@
+---
+- name: Install pnpm globally
+  become: true
+  shell: |
+    curl -fsSL https://get.pnpm.io/install.sh | sh -
+  args:
+    creates: /usr/local/bin/pnpm
+
+- name: Add pnpm to system PATH
+  become: true
+  lineinfile:
+    path: /etc/profile.d/pnpm.sh
+    line: 'export PATH="/usr/local/bin:$PATH"'
+    create: yes
+    mode: '0644' 
