@@ -10,6 +10,8 @@
     - minikube
     - nodejs
     - pnpm
+    - post-setup
+    - rust
     
     
       

@@ -1,0 +1,5 @@
+---
+rust_channel: "stable"
+rust_components:
+  - rustfmt
+  - clippy 

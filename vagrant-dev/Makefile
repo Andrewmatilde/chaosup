@@ -13,9 +13,12 @@ link:
 up:
 	vagrant up
 
+down:
+	vagrant destroy -f
+
 #ansible
 ansible:
-	ansible-playbook -i $VAGRANT_HOST, ansible/playbook.yml -u root --private-key ./ssh/root_key
+	ansible-playbook -i ${VAGRANT_HOST}, ansible/playbook.yml -u root --private-key ./ssh/root_key
 
 # Create ssh key pair
 create-key:

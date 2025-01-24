@@ -8,3 +8,5 @@
 - minikube
 - nodejs
 - pnpm
+
+just use `minikube start --fore`

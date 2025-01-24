@@ -1,0 +1,40 @@
+---
+- name: Add kubectl alias to .bashrc
+  lineinfile:
+    path: /home/vagrant/.bashrc
+    line: 'alias kubectl="minikube kubectl --"'
+    create: yes
+
+- name: Clone chaos-mesh repository
+  git:
+    repo: 'https://github.com/chaos-mesh/chaos-mesh.git'
+    dest: /home/vagrant/chaos-mesh
+    clone: yes
+    update: yes
+  become: yes
+  become_user: vagrant
+
+- name: Create minikube startup script
+  copy:
+    dest: /home/vagrant/start-minikube.sh
+    content: |
+      #!/bin/bash
+      cd /home/vagrant
+      minikube start --force --mount --mount-string "$(pwd):$(pwd)"
+      eval $(minikube -p minikube docker-env)
+    mode: '0755'
+    owner: vagrant
+    group: vagrant
+
+- name: Add minikube docker-env to .bashrc
+  lineinfile:
+    path: /home/vagrant/.bashrc
+    line: 'eval $(minikube -p minikube docker-env)'
+    create: yes
+
+- name: Execute minikube startup script
+  command: /home/vagrant/start-minikube.sh
+  become: yes
+  become_user: vagrant
+  async: 600
+  poll: 0 
